@@ -1,0 +1,6 @@
+.home-wrapper {
+    margin: 0 0 0 17.5rem;
+    background: rgb(23, 23, 26);
+    background: linear-gradient(90deg, rgba(23, 23, 26, 1) 44%, rgba(24, 24, 24, 1) 100%);
+    min-height: 100vh;
+}

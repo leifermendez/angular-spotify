@@ -1,0 +1,34 @@
+<!-- Diseño del mode (small)-->
+<div *ngIf="mode==='small'" class="card-player player-small">
+    <img [src]="track.cover" [alt]="track.name" class="cover">
+    <div class="content-player">
+        {{track.name}}
+    </div>
+    <div class="buttons-player">
+        <button *ngIf="true" class="play-btn">
+            <i class="uil " [ngClass]="{'uil-play':true}"></i>
+        </button>
+        <button *ngIf="false" class="play-btn">
+            <i class="uil uil-play"></i>
+        </button>
+    </div>
+</div>
+
+<!-- Diseño del mode (big)-->
+<div *ngIf="mode==='big'" class="card-player player-big">
+
+    <img appImgBroken [customImg]="'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png'" [src]="track.cover" alt="" class="cover">
+
+    <div class="content-player">
+        <div class="title-track">{{track.name}}</div>
+        <div class="sub-title-track">{{track.name}}</div>
+    </div>
+    <div class="buttons-player">
+        <button (click)="sendPlay(track)" *ngIf="true" class="play-btn">
+            <i class="uil " [ngClass]="{'uil-play':true}"></i>
+        </button>
+        <button *ngIf="false" class="play-btn">
+            <i class="uil uil-play"></i>
+        </button>
+    </div>
+</div>

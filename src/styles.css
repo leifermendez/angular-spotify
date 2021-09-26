@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+    --color-1: #1DB954;
+    --color-2: #323232;
+    --color-3: #000000;
+    --color-4: #FFFFFF;
+    --color-5: #181818;
+    --font-size-1: 1rem;
+    --font-size-2: 1.2rem;
+    --font-size-3: 1.8rem;
+    --shadow-1: rgb(0 0 0 / 35%) 0px 8px 24px;
+    --shadow-2: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    --border-radius-1: .25rem;
+    --border-radius-2: .5rem;
+    --font-family-1: 'Poppins', sans-serif;
+    --animation-1: 200ms;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-3);
+    font-family: var(--font-family-1);
+    font-size: var(--font-size-1);
+    color: var(--color-4);
+}
+
+input,
+button {
+    font-family: var(--font-family-1);
+}
+
+button:disabled {
+    opacity: .5;
+}

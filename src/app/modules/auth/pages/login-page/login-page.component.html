@@ -1,0 +1,27 @@
+<div class="login-auth-page">
+    <div class="login-auth-wrapper">
+        <h3>Para continuar, inicia sesión en Spotify.</h3>
+        <div class="login-social-zone">
+            <button class="social-btn btn-fb "> <i class="uil uil-facebook-f"></i> Continuar con Social</button>
+            <button class="social-btn btn-apple"><i class="uil uil-apple"></i> Continuar con Apple</button>
+            <button class="social-btn"><i class="uil uil-google"></i> Continuar con Google</button>
+        </div>
+        <div class="separator"></div>
+        <form (ngSubmit)="sendLogin()" [formGroup]="formLogin" class="login-auth-form">
+            <div class="form-group">
+                <label for="email">Dirección de correo o nombre de usuario</label>
+                <input formControlName="email" type="text" placeholder="Dirección de correo o nombre de usuario" class="form-input">
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input formControlName="password" type="password" placeholder="Contraseña" class="form-input">
+            </div>
+            <div class="form-steps">
+                <a class="link" href="">¿Se te ha olvidado la contraseña?</a>
+            </div>
+            <div class="form-action">
+                <button [disabled]="formLogin.invalid" class="login social-btn">Iniciar sesión</button>
+            </div>
+        </form>
+    </div>
+</div>

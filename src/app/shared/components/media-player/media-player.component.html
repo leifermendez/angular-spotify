@@ -1,0 +1,71 @@
+<div class="media-player">
+    <div class="media-player--wrapper ">
+        <!--Zona del artista-->
+        <div class="artist player-center">
+            <ng-container *ngTemplateOutlet="artistZone"></ng-container>
+        </div>
+        <!--Zona del reproductor-->
+        <div class="player-controls player-center">
+            <ng-container *ngTemplateOutlet="playerZone"></ng-container>
+        </div>
+        <!--Zona del controles adicionales-->
+        <div class="player-audio player-center">
+            <ng-container *ngTemplateOutlet="playerAudio"></ng-container>
+        </div>
+    </div>
+</div>
+
+<!-- ZONE TEMPLATES -->
+
+<ng-template #artistZone>
+    <div class="artist-inside" *ngIf="true">
+
+        <img [src]="mockCover.cover" alt="" class="cover">
+        <div class="track-info">
+            <h3 class="track-title">{{mockCover.name}}</h3>
+            <h5 class="track-title sub-title">{{mockCover?.album}}</h5>
+        </div>
+        <div class="track-like">
+            <button class="btn-like">
+                <i class="uil uil-heart"></i>
+            </button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #playerZone>
+    <div class="player-controls-inside">
+        <div class="buttons-media">
+            <button class="arrow btn">
+                <i class="uil uil-previous"></i>
+            </button>
+            <button class="play btn">
+                <i class="uil"></i>
+            </button>
+            <button class="arrow btn">
+                <i class="uil uil-step-forward"></i>
+            </button>
+        </div>
+        <div class="media-linetime">
+            <div class="time">00</div>
+            <span #progressBar class="time-progress">
+                <span class="time-progress-live" [style.width]="10+'%'"></span>
+            </span>
+            <div class="time">{{99}}</div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #playerAudio>
+    <div class="player-audio-inside">
+        <button class="btn-media">
+            <i class="uil uil-list-ui-alt"></i>
+        </button>
+        <button class="btn-media">
+            <i class="uil uil-boombox"></i>
+        </button>
+        <button class="btn-media">
+            <i class="uil uil-volume-off"></i>
+        </button>
+    </div>
+</ng-template>

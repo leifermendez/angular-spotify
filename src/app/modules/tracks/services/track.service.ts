@@ -1,48 +1,64 @@
-import { TrackModel } from './../../../core/models/tracks.model';
+import { TrackModel } from '@core/models/tracks.model';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import * as dataRaw from '../../../data/tracks.json'
-
+import { Observable, of } from 'rxjs';
+import { map, mergeMap, tap, catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class TrackService {
+  private readonly URL = environment.api
 
-  trendTracks$: Observable<{ data: TrackModel[] }> = of()
-  exampleTracks$: Observable<any> = new Observable()
-  allInOne$: BehaviorSubject<TrackModel[]> = new BehaviorSubject<TrackModel[]>([])
+  constructor(private http: HttpClient) {
 
-  constructor() {
-    const data: any = (dataRaw as any).default
-    this.trendTracks$ = of(data) //TODO: Forma facil de crear una observable de lo que sea! 🤘
+  }
 
+  /**
+   * 
+   * @returns Devolver todas las canciones! molonas! 🤘🤘
+   */
 
-    this.exampleTracks$ = new Observable((observer) => {
-
-      const dataTrack: TrackModel = {
-        _id: 9,
-        name: 'Leve',
-        album: 'Carte de Santa',
-        artist: {
-          name: 'Cartel de Santa',
-          nationality: 'MX',
-          nickname: 'Cartel de Santa'
-        },
-        url: 'http://',
-        cover: 'https://www.sanborns.com.mx/imagenes-sanborns-ii/1200/889853882823.jpg'
-      }
-
-      //TODO: Simulando una peticion que duro 4 segundos
-      setTimeout(() => {
-        observer.next(dataTrack)
-      }, 4000)
-
+  private skipById(listTracks: TrackModel[], id: number): Promise<TrackModel[]> {
+    return new Promise((resolve, reject) => {
+      const listTmp = listTracks.filter(a => a._id !== id)
+      resolve(listTmp)
     })
+  }
 
-    const list = data.data
-
-    this.allInOne$.next(list)
+  /**
+   * //TODO {data:[..1,...2,..2]}
+   * 
+   * @returns 
+   */
+  getAllTracks$(): Observable<any> {
+    return this.http.get(`${this.URL}/tracks`)
+      .pipe(
+        map(({ data }: any) => {
+          return data
+        })
+      )
   }
 
 
+  /**
+   * 
+   * @returns Devolver canciones random
+   */
+  getAllRandom$(): Observable<any> {
+    return this.http.get(`${this.URL}/tracks`)
+      .pipe(
+        tap(data => console.log('🔴🔴🔴', data)),
+        mergeMap(({ data }: any) => this.skipById(data, 2)),
+        // map((dataRevertida) => { //TODO aplicar un filter comun de array
+        //   return dataRevertida.filter((track: TrackModel) => track._id !== 1)
+        // })
+        tap(data => console.log('🆗🆗🆗', data)),
+        catchError((err) => {
+          const { status, statusText } = err;
+          console.log('Algo paso revisame 🆗⚠⚠', [status, statusText]);
+          return of([])
+        })
+      )
+  }
 }

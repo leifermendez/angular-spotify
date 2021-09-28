@@ -1,4 +1,3 @@
-import { TrackService } from '@modules/tracks/services/track.service';
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -15,7 +14,7 @@ export class SideBarComponent implements OnInit {
 
   customOptions: Array<any> = []
 
-  constructor(private router: Router, private trackService: TrackService) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.mainMenu.defaultOptions = [
@@ -67,18 +66,6 @@ export class SideBarComponent implements OnInit {
       }
     ]
 
-    const observable2$ = this.trackService.exampleTracks$.subscribe(
-      (data) => {
-        this.customOptions.push(
-          {
-            name: data.name,
-            router: []
-          }
-        )
-        console.log('🆗🆗🆗  ', data);
-
-      }
-    );
   }
 
   goTo($event: any): void {

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  googleMapKey: 'KEY_QUE_SE_EN_DESARROLLO'
+  api: 'http://localhost:3001/api/1.0'
 };
 
 /*

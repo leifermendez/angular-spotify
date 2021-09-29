@@ -9,28 +9,15 @@ import { Subscription } from 'rxjs'; //TODO: Programacion reactiva!
   styleUrls: ['./media-player.component.css']
 })
 export class MediaPlayerComponent implements OnInit, OnDestroy {
-  mockCover: TrackModel = {
-    cover: 'https://i.scdn.co/image/ab67616d0000b27345ca41b0d2352242c7c9d4bc',
-    album: 'Gioli & Assia',
-    name: 'BEBE (Oficial)',
-    url: 'http://localhost/track.mp3',
-    _id: 1
-  }
 
   listObservers$: Array<Subscription> = []
 
-  constructor(private multimediaService: MultimediaService) { }
+  constructor(public multimediaService: MultimediaService) { }
 
   ngOnInit(): void {
 
-    const observer1$: Subscription = this.multimediaService.callback.subscribe(
-      (response: TrackModel) => {
-        console.log('Recibiendo cancion....', response);
-      }
-    )
 
 
-    this.listObservers$ = [observer1$]
   }
 
   ngOnDestroy(): void {

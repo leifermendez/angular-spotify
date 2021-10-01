@@ -29,6 +29,7 @@ body {
 
 input,
 button {
+    cursor: pointer;
     font-family: var(--font-family-1);
 }
 

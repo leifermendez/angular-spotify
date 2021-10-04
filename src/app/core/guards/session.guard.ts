@@ -8,7 +8,9 @@ import { Observable } from 'rxjs';
 })
 export class SessionGuard implements CanActivate {
 
-  constructor(private cookieService: CookieService, private router: Router) {
+  constructor(
+    private cookieService: CookieService,
+    private router: Router) {
 
   }
 

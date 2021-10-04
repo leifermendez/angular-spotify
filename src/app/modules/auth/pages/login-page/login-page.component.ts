@@ -45,7 +45,7 @@ export class LoginPageComponent implements OnInit {
       },
         err => {//TODO error 400>=
           this.errorSession = true
-          console.log('Ocurrio error con tu email o password');
+          console.log('⚠⚠⚠⚠Ocurrio error con tu email o password');
         })
 
   }

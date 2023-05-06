@@ -3,6 +3,7 @@ import { TrackModel } from '@core/models/tracks.model';
 import { MultimediaService } from '@shared/services/multimedia.service';
 import { Subscription } from 'rxjs'; //TODO: Programacion reactiva!
 import { NgTemplateOutlet, NgIf, NgClass, AsyncPipe } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-media-player',
@@ -20,6 +21,7 @@ export class MediaPlayerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     const observer1$ = this.multimediaService.playerStatus$
+    .pipe(takeUntilDestroyed())
       .subscribe(status => this.state = status)
     this.listObservers$ = [observer1$]
   }

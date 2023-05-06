@@ -2,11 +2,14 @@ import { TrackService } from '@modules/tracks/services/track.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TrackModel } from '@core/models/tracks.model';
 import { Subscription } from 'rxjs';
+import { SectionGenericComponent } from '../../../../shared/components/section-generic/section-generic.component';
 
 @Component({
-  selector: 'app-tracks-page',
-  templateUrl: './tracks-page.component.html',
-  styleUrls: ['./tracks-page.component.css']
+    selector: 'app-tracks-page',
+    templateUrl: './tracks-page.component.html',
+    styleUrls: ['./tracks-page.component.css'],
+    standalone: true,
+    imports: [SectionGenericComponent]
 })
 export class TracksPageComponent implements OnInit, OnDestroy {
 

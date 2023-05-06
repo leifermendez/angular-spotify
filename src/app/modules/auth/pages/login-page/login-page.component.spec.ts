@@ -11,12 +11,12 @@ describe('LoginPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
+    imports: [
         HttpClientTestingModule,
-        RouterTestingModule
-      ],
-      declarations: [LoginPageComponent]
-    })
+        RouterTestingModule,
+        LoginPageComponent
+    ]
+})
       .compileComponents();
   });
 
